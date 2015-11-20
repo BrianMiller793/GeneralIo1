@@ -12,7 +12,7 @@ namespace GeneralUi
     /// <summary>
     /// Contains unit tests for the ShortenUri class.
     /// </summary>
-    public class ShortTest
+    public class RestTest
     {
         /// <summary> Active API key to access the Google API. </summary>
         static string apiKey = System.Environment.GetEnvironmentVariable("GoogleShortenerApiKey");
@@ -29,7 +29,7 @@ namespace GeneralUi
         {
             string shortUri = ShortenUri.GetShortUri(testUri, apiKey);
             Assert.True(string.IsNullOrEmpty(shortUri) == false, "shortUri");
-            Assert.Equal(testUri, this.GetResponseUri(shortUri));
+            Assert.Equal(testUri, RestTest.GetResponseUri(shortUri));
         }
 
         [Theory]
@@ -50,7 +50,7 @@ namespace GeneralUi
         /// </summary>
         /// <param name="destination">URI destination.</param>
         /// <returns>Final URI, after redirections.</returns>
-        private string GetResponseUri(string destination)
+        public static string GetResponseUri(string destination)
         {
             if (string.IsNullOrEmpty(destination))
             {
